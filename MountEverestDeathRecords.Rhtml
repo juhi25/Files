@@ -1,0 +1,36 @@
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+
+<p>{"List of people who died climbing Mount Everest"}:</p>
+
+<!--begin.rcode
+
+library("rvest") # loading package "rvest" to read data from html web pages into        the current session.
+
+mountEverestData <- html("http://en.wikipedia.org/wiki/List_of_people_who_died_climbing_Mount_Everest") # Parsing the html page.
+
+dataFrame <- html_table(html_nodes(mountEverestData, "table")[[1]],fill=TRUE)
+#Parsing table into data farme.
+
+dataFrame #Displays the data
+
+mon <- months(as.Date(dataFrame[,2])) #taking out the month from the date.
+
+counts <- table(mon)# using table() function to count the frequency of each month
+
+barplot(counts, main="Death By Months", xlab="Month") # plotting bar chart with number of deaths on y-axis and month on x-axis.
+
+end.rcode-->
+
+<p>The above plot shows the number of deaths in a particular month:</p>
+
+
+
+</body>
+</html>
+

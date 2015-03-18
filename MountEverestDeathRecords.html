@@ -1,0 +1,1896 @@
+<html>
+
+<head>
+<style type="text/css">
+.knitr.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+},
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0em 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage.left {
+  text-align: left;
+}
+.rimage.right {
+  text-align: right;
+}
+.rimage.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>Title</title>
+</head>
+
+<body>
+
+<p>{"List of people who died climbing Mount Everest"}:</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(</span><span class="hl str">&quot;rvest&quot;</span><span class="hl std">)</span> <span class="hl com"># loading package &quot;rvest&quot; to read data from html web pages into        the current session.</span>
+
+<span class="hl std">mountEverestData</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">html</span><span class="hl std">(</span><span class="hl str">&quot;http://en.wikipedia.org/wiki/List_of_people_who_died_climbing_Mount_Everest&quot;</span><span class="hl std">)</span> <span class="hl com"># Parsing the html page.</span>
+
+<span class="hl std">dataFrame</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">html_table</span><span class="hl std">(</span><span class="hl kwd">html_nodes</span><span class="hl std">(mountEverestData,</span> <span class="hl str">&quot;table&quot;</span><span class="hl std">)[[</span><span class="hl num">1</span><span class="hl std">]],</span><span class="hl kwc">fill</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">)</span>
+<span class="hl com">#Parsing table into data farme.</span>
+
+<span class="hl std">dataFrame</span> <span class="hl com">#Displays the data</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##                                                                              Name
+## 1                                                                           Dorje
+## 2                                                                           Tupac
+## 3                                                                           Norbu
+## 4                                                                          Pasang
+## 5                                                                            Pema
+## 6                                                                           Sange
+## 7                                                                           Temba
+## 8                                                         Bahadur, ManMan Bahadur
+## 9                                   Shamsherpun, Lance-NaikLance-Naik Shamsherpun
+## 10                                                    Irvine, AndrewAndrew Irvine
+## 11                                                  Mallory, GeorgeGeorge Mallory
+## 12                                                  Wilson, MauriceMaurice Wilson
+## 13                                                      Mingma, DorjeDorje Mingma
+## 14                                                                Ji, WangWang Ji
+## 15                                            Shi-Ching, ShaoShao Shi-Ching [A 2]
+## 16                                                Tshering, NawangNawang Tshering
+## 17                                              Breitenbach, JakeJake Breitenbach
+## 18                                                         Gao-shu , MaMa Gao-shu
+## 19                                                            Dorje, PhuPhu Dorje
+## 20                                                          Dorje, NimaNima Dorje
+## 21                                                        Norbu, KungaKunga Norbu
+## 22                                                          Norbu, MimaMima Norbu
+## 23                                                                 Pasang, Pasang
+## 24                                                    Tshering, KamiKami Tshering
+## 25                                                    Tshering, KyakKyak Tshering
+## 26                                                    Tshering, KyakKyak Tshering
+## 27                                                  Narita, KiyoshiKiyoshi Narita
+## 28                                            Vestergaard, SørenSøren Vestergaard
+## 29                                                          Tighe, TonyTony Tighe
+## 30                                                                 , JangbuJangbu
+## 31                                          Devouassoux, GérardGérard Devouassoux
+## 32                                                        Dorje, PembaPemba Dorje
+## 33                                                                 , LhakpaLhakpa
+## 34                                                      Lutuk, NawangNawang Lutuk
+## 35                                                      Wangchu, NimaNima Wangchu
+## 36                                                        Wongal, SanuSanu Wongal
+## 37                                              Zhuong Yue, WuWu Zhuong Yue [A 3]
+## 38                                                          Burke, MickMick Burke
+## 39                                                  Thompson, TerryTerry Thompson
+## 40                                                            Nuru, DawaDawa Nuru
+## 41                                                        Ming-ji, ShiShi Ming-ji
+## 42                                                                Phu, AngAng Phu
+## 43                                                            Genet, RayRay Genet
+## 44                                            Schmatz, HanneloreHannelore Schmatz
+## 45                                                    Hong-bao, WangWang Hong-bao
+## 46                                                         Lan , LouLou Lan [A 4]
+## 47                                                   Thaxi , NimaNima Thaxi [A 5]
+## 48                                                            Ube, AkiraAkira Ube
+## 49                                                  Kersang, NawangNawang Kersang
+## 50                                                        Piana, MarioMario Piana
+## 51                                                Takenaka, NoboruNoboru Takenaka
+## 52                                                          Hoey, MartyMarty Hoey
+## 53                                                  Boardman, PeterPeter Boardman
+## 54                                                          Tasker, JoeJoe Tasker
+## 55                                                        Chuldim, AngAng Chuldim
+## 56                                                          Dorje, DawaDawa Dorje
+## 57                                                        Sona, PasangPasang Sona
+## 58                                                Griffiths, BlairBlair Griffiths
+## 59                                                Tshering, LhakpaLhakpa Tshering
+## 60                                                          Dorje, NimaNima Dorje
+## 61                                                          Kato, YasuoYasuo Kato
+## 62                                          Kobayashi, ToshiakiToshiaki Kobayashi
+## 63                                                Kamuro, HironobuHironobu Kamuro
+## 64                                                      Temba, PasangPasang Temba
+## 65                                                Yoshino, HiroshiHiroshi Yoshino
+## 66                                                            Rinji, AngAng Rinji
+## 67                                                      Swierzy, TonyTony Swierzy
+## 68                                  Prodanov, Hristo IvanovHristo Ivanov Prodanov
+## 69                                                            From, FredFred From
+## 70                                                      Nottle, CraigCraig Nottle
+## 71                                                      Psotka, JozefJozef Psotka
+## 72                                                            Dorje, AngAng Dorje
+## 73                                  Thapa, Yogendra BahadurYogendra Bahadur Thapa
+## 74                                                  Navarro, JuanjoJuanjo Navarro
+## 75                                                  Ishii, ShinichiShinichi Ishii
+## 76                                            Kumar, Kiran InderKiran Inder Kumar
+## 77                                                      Bahugana, JaiJai Bahugana
+## 78                                      Bakshi, Ranjeet SinghRanjeet Singh Bakshi
+## 79                                      Negi, Vijay Pal SinghVijay Pal Singh Negi
+## 80                                      Rao, M.U. Bhaskar RaoM.U. Bhaskar Rao Rao
+## 81                                      Trujillo, Víctor HugoVíctor Hugo Trujillo
+## 82                                                Burkhardt, SimonSimon Burkhardt
+## 83                                                                   Gyalu, Gyalu
+## 84                                                          Norbu, DawaDawa Norbu
+## 85                                                    Dorje, TsuttinTsuttin Dorje
+## 86                                                  Marshall, RogerRoger Marshall
+## 87                                                  Yokoyama, MasaoMasao Yokoyama
+## 88                                                      Singh, MangalMangal Singh
+## 89                                          Mizukoshi, HidetakaHidetaka Mizukoshi
+## 90                                            Parmentier, MichelMichel Parmentier
+## 91                                              Shrestha, NarayanNarayan Shrestha
+## 92                                                      Sonam, LhakpaLhakpa Sonam
+## 93                                                      Temba, PasangPasang Temba
+## 94                                                        Becík, DušanDušan Becík
+## 95                                                        Božík, PeterPeter Božík
+## 96                                                  Jaško, JaroslavJaroslav Jaško
+## 97                                                          Just, JozefJozef Just
+## 98                                                          Lhakpa, AngAng Lhakpa
+## 99                                Ilievski-Murato, DimitarDimitar Ilievski-Murato
+## 100                                                           Dorje, PhuPhu Dorje
+## 101                                                 Dąsal, MirosławMirosław Dąsal
+## 102                                 Gardzielewski, MirosławMirosław Gardzielewski
+## 103                                             Heinrich, AndrzejAndrzej Heinrich
+## 104                                                   Otręba, WacławWacław Otręba
+## 105                                           Chrobak, EugeniuszEugeniusz Chrobak
+## 106                                                           Pinjo, AngAng Pinjo
+## 107                                         Gómez-Menor, RafaelRafael Gómez-Menor
+## 108                                                             Sona, AngAng Sona
+## 109                                                         Nath, BadriBadri Nath
+## 110                                                     Sang-Hun, HamHam Sang-Hun
+## 111                                                     Lang, RüdigerRüdiger Lang
+## 112                                             Futagami, JunichiJunichi Futagami
+## 113                                               Kulkarni, DeepakDeepak Kulkarni
+## 114                                                   Jacob, RaymondRaymond Jacob
+## 115                                                       Singh, SubbaSubba Singh
+## 116                                                         Singh, SherSher Singh
+## 117                                                     Hoshi, ManabuManabu Hoshi
+## 118                                                     Tshering, AngAng Tshering
+## 119                                       Sherpa, Pasang LhamuPasang Lhamu Sherpa
+## 120                                                 Tshering, SonamSonam Tshering
+## 121                               Tshering Bhutia, LobsangLobsang Tshering Bhutia
+## 122                                                       Won-Woo, NamNam Won-Woo
+## 123                                                       Jin-Seob, AnAn Jin-Seob
+## 124                                                       Henize, KarlKarl Henize
+## 125                                               Miranda, AntonioAntonio Miranda
+## 126                                                         Thapa, PremPrem Thapa
+## 127                                        Fang-Fang, ShihShih Fang-Fang 'Norman'
+## 128                                     Vigani-Fang, GiuseppeGiuseppe Vigani-Fang
+## 129                                             Rheinberger, MikeMike Rheinberger
+## 130                                                     Norbu, MingmaMingma Norbu
+## 131                                                           Rita, KamiKami Rita
+## 132                                                       Nuru, LhakpaLhakpa Nuru
+## 133                                                                , ZangbuZangbu
+## 134                                                       Yu-Nan, ChenChen Yu-Nan
+## 135                                                   Fischer, ScottScott Fischer
+## 136                                                             Hall, RobRob Hall
+## 137                                                       Hansen, DougDoug Hansen
+## 138                                                   Harris, AndrewAndrew Harris
+## 139                                                       Morup, DorjeDorje Morup
+## 140                                                     Namba, YasukoYasuko Namba
+## 141                                                 Paljor, TsewangTsewang Paljor
+## 142                                               Samanla, TsewangTsewang Samanla
+## 143                                             Wlasich, ReinhardReinhard Wlasich
+## 144                                                     Herrod, BruceBruce Herrod
+## 145                                                 Topche, NgawangNgawang Topche
+## 146                                                     Bouchon, YvesYves Bouchon
+## 147                                                 Jangbu, LobsangLobsang Jangbu
+## 148                                                                    , DawaDawa
+## 149                                                     Duff, MalcolmMalcolm Duff
+## 150                                                         Rinzi, NimaNima Rinzi
+## 151                                         Torochin, AleksandrAleksandr Torochin
+## 152                                                 Plotnikov, IvanIvan Plotnikov
+## 153                                       Shevtchenko, NikolaiNikolai Shevtchenko
+## 154                                                                , MingmaMingma
+## 155                                                 Kowalzik, PeterPeter Kowalzik
+## 156                                                     Nuru, TenzingTenzing Nuru
+## 157                                                 Byong-Soo, ChoiChoi Byong-Soo
+## 158                                             Arsentiev, SergeiSergei Arsentiev
+## 159                                           Arsentiev, FrancysFrancys Arsentiev
+## 160                                                   Jennings, MarkMark Jennings
+## 161                                                       Buick, RogerRoger Buick
+## 162                                                 Kopytko, VasiliVasili Kopytko
+## 163                                             Matthews, MichaelMichael Matthews
+## 164                                             Kudelski, TadeuszTadeusz Kudelski
+## 165                                             Debrouwer, PascalPascal Debrouwer
+## 166                                                     Stoltz, JeppeJeppe Stoltz
+## 167                                                       Gen-hua, YanYan Gen-hua
+## 168                                           Chiri Sherpa, BabuBabu Chiri Sherpa
+## 169                                                     Ganner, PeterPeter Ganner
+## 170                                                     Auricht, MarkMark Auricht
+## 171                                           Nikiforov, AlekseiAleksei Nikiforov
+## 172                                                   Gárdos, SándorSándor Gárdos
+## 173                                                     Legate, PeterPeter Legate
+## 174                                                   Miletic, ZoranZoran Miletic
+## 175                                                 Siffredi, MarcoMarco Siffredi
+## 176                                       Bahadur Gurung, BhimBhim Bahadur Gurung
+## 177                               Liszewski, Jan KrzysztofJan Krzysztof Liszewski
+## 178                                               Saulnier, ArnaudArnaud Saulnier
+## 179                                     Gyalzen Sherpa, KarmaKarma Gyalzen Sherpa
+## 180                                                     Baek, Joon-HoJoon-Ho Baek
+## 181                                                             Jang, MinMin Jang
+## 182                                                     Park, Mu-TaekMu-Taek Park
+## 183                                                   Antezana, NilsNils Antezana
+## 184                                 Hristov, Hristo GanchevHristo Ganchev Hristov
+## 185                                                           Ota, ShokoShoko Ota
+## 186                       Maslarova, Mariana ProdanovaMariana Prodanova Maslarova
+## 187                                                           Egan, SeanSean Egan
+## 188                                   O'Brien, Michael CoreyMichael Corey O'Brien
+## 189                                             Lihteneker, MarkoMarko Lihteneker
+## 190       Shankarappa Chaitanya, SirigereshivaSirigereshiva Shankarappa Chaitanya
+## 191                                                   Kramer, DieterDieter Kramer
+## 192                                     Milne, Robert WilliamRobert William Milne
+## 193                 Sherpa, Tuk Bahadur Thapa MagarTuk Bahadur Thapa Magar Sherpa
+## 194                                          Sherpa , Ang PhinjoAng Phinjo Sherpa
+## 195                                                    Tseri , LhakpaLhakpa Tseri
+## 196                                                        Temba , DawaDawa Temba
+## 197                              Letrange , Jacques-HuguesJacques-Hugues Letrange
+## 198                                                        Srikrishna, Srikrishna
+## 199                                                       Sharp, DavidDavid Sharp
+## 200                                                     Olsson, TomasTomas Olsson
+## 201                                                   Negrete, VitorVitor Negrete
+## 202                                                 Plyushkin, IgorIgor Plyushkin
+## 203                                                     Weber, ThomasThomas Weber
+## 204                                               Okura, YoshitomiYoshitomi Okura
+## 205                                       Pierangelo, MaurizioMaurizio Pierangelo
+## 206                                                       Hee-joon, OhOh Hee-joon
+## 207                                                       Hyun-jo, LeeLee Hyun-jo
+## 208                                             Goltz, Uwe GianniUwe Gianni Goltz
+## 209                                                       Nuru, LhakpaLhakpa Nuru
+## 210                                             Chrzaszcz, VeslavVeslav Chrzaszcz
+## 211                                                         Wu, WenhongWenhong Wu
+## 212                                                 Ziebarth, FrankFrank Ziebarth
+## 213                                               Várkonyi, LászlóLászló Várkonyi
+## 214                                                  Jørgensen , TomTom Jørgensen
+## 215                                                   Kinloch, PeterPeter Kinloch
+## 216                                                         Hitch, RickRick Hitch
+## 217                         Upadhyaya, Shailendra KumarShailendra Kumar Upadhyaya
+## 218                                                   Ozaki, TakashiTakashi Ozaki
+## 219                                                     Delaney, JohnJohn Delaney
+## 220                                                     Kino, HiroakiHiroaki Kino
+## 221                                                     Tenzing, DawaDawa Tenzing
+## 222                                 Namgyal Sherpa, KarsangKarsang Namgyal Sherpa
+## 223                                                     Gulve, RameshRamesh Gulve
+## 224                               Tshering Sherpa, NamgyalNamgyal Tshering Sherpa
+## 225                                     Shah–Klorfine, ShriyaShriya Shah–Klorfine
+## 226                                               Schaaf, EberhardEberhard Schaaf
+## 227                                                     Won-bin, SongSong Won-bin
+## 228                                                             Wenyi, HaHa Wenyi
+## 229                                 José Polo Carbayo, JuanJuan José Polo Carbayo
+## 230                                                 Arnold, Ralf D.Ralf D. Arnold
+## 231                                                         Lim, PisethPiseth Lim
+## 232                                                   Sherpa, MingmaMingma Sherpa
+## 233                                                   Sherpa, DaRitaDaRita Sherpa
+## 234                                             Ponomarev, SergeySergey Ponomarev
+## 235                                                 Sherpa, LobsangLobsang Sherpa
+## 236                                                 Bolotov, AlexeyAlexey Bolotov
+## 237                                                 Sherpa, NamgyalNamgyal Sherpa
+## 238                                                       Sung-Ho, SeoSeo Sung-Ho
+## 239 Khaled (Mohammed Khaled Hossain), SajalSajal Khaled (Mohammed Khaled Hossain)
+## 240                                   Sherpa, Mingma TenzingMingma Tenzing Sherpa
+## 241                                         Sherpa, Mingma NuruMingma Nuru Sherpa
+## 242                                                     Sherpa, DorjiDorji Sherpa
+## 243                                           Sherpa, Ang TshiriAng Tshiri Sherpa
+## 244                                                       Sherpa, NimaNima Sherpa
+## 245                                     Sherpa, Phurba OngyalPhurba Ongyal Sherpa
+## 246                                       Sherpa, Chris DeckerChris Decker Sherpa
+## 247                                 Sherpa, Chhiring OngchuChhiring Ongchu Sherpa
+## 248                                                   Khatri, DorjeeDorjee Khatri
+## 249                                         Sherpa, Then DorjeeThen Dorjee Sherpa
+## 250                                           Sherpa, Phur TembaPhur Temba Sherpa
+## 251                                       Sherpa, Pasang KarmaPasang Karma Sherpa
+## 252                                                     Tamang, AsmanAsman Tamang
+## 253                                 Sherpa, Tenzing ChottarTenzing Chottar Sherpa
+## 254                                                   Sherpa, AnkajiAnkaji Sherpa
+## 255                                               Sherpa, PemTenjiPemTenji Sherpa
+## 256                                       Gurung, Aash BahadurAash Bahadur Gurung
+##                               Date   Age
+## 1         1922-06-07 !June 7, 1922      
+## 2         1922-06-07 !June 7, 1922      
+## 3         1922-06-07 !June 7, 1922      
+## 4         1922-06-07 !June 7, 1922      
+## 5         1922-06-07 !June 7, 1922      
+## 6         1922-06-07 !June 7, 1922      
+## 7         1922-06-07 !June 7, 1922      
+## 8         1924-05-13 !May 13, 1924      
+## 9         1924-05-17 !May 17, 1924      
+## 10        1924-06-09 !June 9, 1924    22
+## 11        1924-06-09 !June 9, 1924    37
+## 12  1934-05-31 !May 31, 1934 [A 1]    36
+## 13    1952-10-31 !October 31, 1952      
+## 14      1960-04-11 !April 11, 1960      
+## 15      1960-04-29 !April 29, 1960      
+## 16      1962-04-28 !April 28, 1962      
+## 17      1963-03-23 !March 23, 1963    27
+## 18         1966-05-01 !May 1, 1966      
+## 19    1969-10-18 !October 18, 1969      
+## 20       1970-04-05 !April 5, 1970      
+## 21       1970-04-05 !April 5, 1970      
+## 22       1970-04-05 !April 5, 1970      
+## 23       1970-04-05 !April 5, 1970      
+## 24       1970-04-05 !April 5, 1970      
+## 25       1970-04-05 !April 5, 1970      
+## 26       1970-04-09 !April 9, 1970    36
+## 27      1970-04-21 !April 21, 1970      
+## 28      1971-04-18 !April 18, 1971      
+## 29   1972-11-16 !November 16, 1972      
+## 30    1973-10-12 !October 12, 1973      
+## 31   1974-09-09 !September 9, 1974      
+## 32   1974-09-09 !September 9, 1974      
+## 33   1974-09-09 !September 9, 1974      
+## 34   1974-09-09 !September 9, 1974      
+## 35   1974-09-09 !September 9, 1974      
+## 36   1974-09-09 !September 9, 1974      
+## 37         1975-05-04 !May 4, 1975      
+## 38  1975-09-26 !September 26, 1975    34
+## 39      1976-04-10 !April 10, 1976      
+## 40      1978-04-18 !April 18, 1978      
+## 41      1978-04-18 !April 18, 1978      
+## 42        1979-05-16 !May 16, 1979      
+## 43     1979-10-02 !October 2, 1979    48
+## 44     1979-10-02 !October 2, 1979    39
+## 45    1979-10-12 !October 12, 1979      
+## 46    1979-10-12 !October 12, 1979      
+## 47    1979-10-12 !October 12, 1979      
+## 48         1980-05-02 !May 2, 1980    31
+## 49   1980-09-06 !September 6, 1980      
+## 50  1980-09-22 !September 22, 1980      
+## 51    1981-01-12 !January 12, 1981    28
+## 52        1982-05-15 !May 15, 1982    30
+## 53        1982-05-17 !May 17, 1982    31
+## 54        1982-05-17 !May 17, 1982    33
+## 55     1982-08-31 !August 31, 1982    20
+## 56     1982-08-31 !August 31, 1982    42
+## 57     1982-08-31 !August 31, 1982    38
+## 58   1982-09-02 !September 2, 1982    33
+## 59  1982-09-27 !September 27, 1982      
+## 60    1982-10-14 !October 14, 1982      
+## 61   1982-12-28 !December 28, 1982    33
+## 62   1982-12-28 !December 28, 1982      
+## 63     1983-10-08 !October 8, 1983      
+## 64     1983-10-08 !October 8, 1983      
+## 65     1983-10-09 !October 9, 1983      
+## 66      1984-03-26 !March 26, 1984      
+## 67       1984-04-03 !April 3, 1984    27
+## 68      1984-04-21 !April 21, 1984    40
+## 69     1984-10-09 !October 9, 1984    28
+## 70     1984-10-09 !October 9, 1984    23
+## 71    1984-10-16 !October 16, 1984    50
+## 72    1984-10-24 !October 24, 1984    35
+## 73    1984-10-24 !October 24, 1984    36
+## 74        1985-05-12 !May 12, 1985      
+## 75  1985-09-17 !September 19, 1985      
+## 76     1985-10-07 !October 7, 1985    40
+## 77    1985-10-11 !October 11, 1985      
+## 78    1985-10-11 !October 11, 1985      
+## 79    1985-10-11 !October 11, 1985    28
+## 80    1985-10-11 !October 11, 1985      
+## 81     1986-08-16 !August 16, 1986    22
+## 82  1986-09-28 !September 28, 1986    52
+## 83     1986-10-04 !October 4, 1986      
+## 84    1986-10-17 !October 17, 1986      
+## 85    1987-01-30 !January 30, 1987      
+## 86        1987-05-21 !May 21, 1987    45
+## 87   1987-09-02 !September 2, 1987    44
+## 88    1987-10-20 !October 20, 1987      
+## 89      1988-04-21 !April 21, 1988      
+## 90  1988-09-20 !September 20, 1988      
+## 91  1988-09-21 !September 21, 1988      
+## 92    1988-10-13 !October 13, 1988      
+## 93    1988-10-13 !October 13, 1988      
+## 94    1988-10-17 !October 17, 1988    34
+## 95    1988-10-17 !October 17, 1988    34
+## 96    1988-10-17 !October 17, 1988    26
+## 97    1988-10-17 !October 17, 1988    33
+## 98   1988-12-23 !December 23, 1988      
+## 99        1989-05-10 !May 10, 1989      
+## 100       1989-05-16 !May 16, 1989      
+## 101       1989-05-27 !May 27, 1989    26
+## 102       1989-05-27 !May 27, 1989    35
+## 103       1989-05-27 !May 27, 1989    51
+## 104       1989-05-27 !May 27, 1989    50
+## 105       1989-05-28 !May 28, 1989    30
+## 106  1989-12-12 !December 12, 1989      
+## 107 1990-09-14 !September 14, 1990      
+## 108 1990-09-14 !September 14, 1990      
+## 109 1990-09-14 !September 14, 1990      
+## 110    1990-10-07 !October 7, 1990      
+## 111        1991-05-03 !May 3, 1991      
+## 112       1991-05-27 !May 27, 1991      
+## 113        1992-05-02 !May 2, 1992      
+## 114        1992-05-02 !May 2, 1992      
+## 115       1992-05-11 !May 11, 1992    43
+## 116       1992-05-23 !May 23, 1992      
+## 117       1992-05-23 !May 23, 1992      
+## 118   1993-01-15 !January 15, 1993      
+## 119     1993-04-23 !April 23, 1993    32
+## 120     1993-04-23 !April 23, 1993      
+## 121       1993-05-10 !May 10, 1993    41
+## 122       1993-05-16 !May 16, 1993      
+## 123       1993-05-17 !May 17, 1993      
+## 124    1993-10-05 !October 5, 1993    66
+## 125    1993-10-07 !October 7, 1993      
+## 126      1994-04-06 !April 6, 1994      
+## 127        1994-05-09 !May 9, 1994    27
+## 128       1994-05-18 !May 18, 1994      
+## 129       1994-05-27 !May 27, 1994    53
+## 130 1994-09-12 !September 12, 1994      
+## 131        1995-05-06 !May 6, 1995      
+## 132 1995-09-10 !September 10, 1995      
+## 133   1995-10-14 !October 14, 1995      
+## 134        1996-05-09 !May 9, 1996    36
+## 135       1996-05-11 !May 11, 1996    40
+## 136       1996-05-11 !May 11, 1996    35
+## 137       1996-05-11 !May 11, 1996    46
+## 138       1996-05-11 !May 11, 1996    31
+## 139       1996-05-11 !May 11, 1996    47
+## 140       1996-05-11 !May 11, 1996    47
+## 141       1996-05-11 !May 11, 1996    28
+## 142       1996-05-11 !May 11, 1996    38
+## 143       1996-05-19 !May 19, 1996      
+## 144       1996-05-25 !May 25, 1996    37
+## 145        1996-06-6 !June 6, 1996      
+## 146 1996-09-25 !September 25, 1996      
+## 147 1996-09-25 !September 25, 1996 23–25
+## 148 1996-09-25 !September 25, 1996      
+## 149     1997-04-23 !April 23, 1997      
+## 150        1997-05-06 !May 6, 1997      
+## 151        1997-05-07 !May 7, 1997      
+## 152        1997-05-07 !May 7, 1997      
+## 153        1997-05-07 !May 7, 1997      
+## 154        1997-05-07 !May 7, 1997      
+## 155        1997-05-08 !May 8, 1997      
+## 156   1997-09-8 !September 8, 1997      
+## 157  1997-09-08 !September 8, 1997      
+## 158       1998-05-23 !May 23, 1998      
+## 159       1998-05-24 !May 24, 1998    40
+## 160       1998-05-25 !May 25, 1998      
+## 161       1998-05-26 !May 26, 1998      
+## 162         1999-05-8 !May 8, 1999      
+## 163       1999-05-13 !May 13, 1999    23
+## 164       1999-05-18 !May 18, 1999    44
+## 165       1999-05-18 !May 18, 1999      
+## 166       2000-05-20 !May 20, 2000    27
+## 167       2000-05-21 !May 21, 2000      
+## 168     2001-04-29 !April 29, 2001    35
+## 169       2001-05-23 !May 23, 2001      
+## 170       2001-05-24 !May 24, 2001      
+## 171       2001-05-24 !May 24, 2001      
+## 172   2001-10-17 !October 17, 2001      
+## 173      2002-4-30 !April 30, 2002    38
+## 174       2002-5-19 !?May 19, 2002      
+## 175    2002-9-8 !September 8, 2002    23
+## 176        2003-5-27 !May 27, 2003      
+## 177        2003-5-25 !May 25, 2003    55
+## 178          2003-5-8 !May 8, 2003      
+## 179        2003-5-24 !May 24, 2003      
+## 180        2004-5-18 !May 18, 2004    38
+## 181        2004-5-18 !May 18, 2004    28
+## 182        2004-5-18 !May 18, 2004    36
+## 183        2004-5-18 !May 18, 2004    69
+## 184        2004-5-20 !May 20, 2004    27
+## 185        2004-5-20 !May 20, 2004    63
+## 186        2004-5-23 !May 23, 2004    43
+## 187      2005-4-28 !April 28, 2005    63
+## 188          2005-5-2 !May 2, 2005    39
+## 189        2005-5-21 !May 21, 2005    45
+## 190        2005-5-30 !May 30, 2005      
+## 191         2005-6-4 !June 4, 2005      
+## 192         2005-6-5 !June 5, 2005    49
+## 193        2006-4-7 !April 7, 2006      
+## 194      2006-4-21 !April 21, 2006    50
+## 195      2006-4-21 !April 21, 2006      
+## 196      2006-4-21 !April 21, 2006      
+## 197          2006-5-6 !May 6, 2006      
+## 198        2006-5-14 !May 14, 2006      
+## 199        2006-5-15 !May 15, 2006    34
+## 200        2006-5-16 !May 16, 2006    30
+## 201        2006-5-19 !May 19, 2006    38
+## 202        2006-5-22 !May 22, 2006      
+## 203        2006-5-25 !May 25, 2006      
+## 204        2007-5-16 !May 16, 2007    62
+## 205        2007-5-17 !May 17, 2007      
+## 206        2007-5-17 !May 17, 2007    37
+## 207        2007-5-17 !May 17, 2007    34
+## 208        2008-5-21 !May 21, 2008    44
+## 209          2009-5-9 !May 7, 2009      
+## 210        2009-5-18 !May 18, 2009      
+## 211        2009-5-19 !May 19, 2009      
+## 212        2009-5-21 !May 21, 2009    29
+## 213      2010-4-26 !April 26, 2010    54
+## 214        2010-5-19 !May 19, 2010    56
+## 215        2010-5-26 !May 26, 2010    28
+## 216          2011-5-1 !May 1, 2011    55
+## 217          2011-5-9 !May 9, 2011    82
+## 218        2011-5-12 !May 12, 2011      
+## 219        2011-5-21 !May 21, 2011    42
+## 220  2011-9-15 !September 15, 2011    48
+## 221        2012-4-5 !April 5, 2012      
+## 222      2012-4-19 !April 19, 2012      
+## 223      2012-4-20 !April 20, 2012    33
+## 224      2012-4-21 !April 21, 2012    28
+## 225        2012-5-19 !May 19, 2012    33
+## 226        2012-5-19 !May 19, 2012    61
+## 227        2012-5-19 !May 19, 2012    44
+## 228        2012-5-20 !May 20, 2012    55
+## 229        2012-5-20 !May 20, 2012    43
+## 230        2012-5-20 !May 20, 2012    43
+## 231   2012-19-10 !October 19, 2012    27
+## 232       2013-4-07 !April 7, 2013    45
+## 233         2013-5-05 !May 5, 2013    37
+## 234         2013-5-05 !May 5, 2013      
+## 235         2013-5-07 !May 7, 2013    22
+## 236        2013-5-15 !May 15, 2013    50
+## 237        2013-5-17 !May 17, 2013    35
+## 238        2013-5-21 !May 21, 2013    33
+## 239        2013-5-21 !May 21, 2013    35
+## 240            2014 !April 2, 2014      
+## 241           2014 !April 18, 2014    46
+## 242           2014 !April 18, 2014      
+## 243           2014 !April 18, 2014      
+## 244           2014 !April 18, 2014      
+## 245           2014 !April 18, 2014      
+## 246           2014 !April 18, 2014      
+## 247           2014 !April 18, 2014      
+## 248           2014 !April 18, 2014      
+## 249           2014 !April 18, 2014      
+## 250           2014 !April 18, 2014      
+## 251           2014 !April 18, 2014      
+## 252           2014 !April 18, 2014      
+## 253           2014 !April 18, 2014      
+## 254           2014 !April 18, 2014      
+## 255           2014 !April 18, 2014      
+## 256           2014 !April 18, 2014      
+##                                                               Expedition
+## 1                                  1922 British Mount Everest Expedition
+## 2                                  1922 British Mount Everest Expedition
+## 3                                  1922 British Mount Everest Expedition
+## 4                                  1922 British Mount Everest Expedition
+## 5                                  1922 British Mount Everest Expedition
+## 6                                  1922 British Mount Everest Expedition
+## 7                                  1922 British Mount Everest Expedition
+## 8                                  1924 British Mount Everest Expedition
+## 9                                  1924 British Mount Everest Expedition
+## 10                                 1924 British Mount Everest Expedition
+## 11                                 1924 British Mount Everest Expedition
+## 12                                                       Solo Expedition
+## 13                                                      Swiss Expedition
+## 14                                     Chinese Expedition Northern Slope
+## 15                                     Chinese Expedition Northern Slope
+## 16                                     Chinese Expedition Northern Slope
+## 17                Norman Dyhrenfurth's American Mount Everest Expedition
+## 18                                            Chinese Everest Expedition
+## 19                                           Japanese Everest Expedition
+## 20                                            Japanese Skiing Expedition
+## 21                                            Japanese Skiing Expedition
+## 22                                            Japanese Skiing Expedition
+## 23                                            Japanese Skiing Expedition
+## 24                                            Japanese Skiing Expedition
+## 25                                            Japanese Skiing Expedition
+## 26                                            Japanese Skiing Expedition
+## 27                                            Japanese Skiing Expedition
+## 28                                      International Expedition of 1971
+## 29                                             Mt. Qomolangma expedition
+## 30                                                                      
+## 31                                   French West Ridge Direct expedition
+## 32                                   French West Ridge Direct expedition
+## 33                                   French West Ridge Direct expedition
+## 34                                   French West Ridge Direct expedition
+## 35                                   French West Ridge Direct expedition
+## 36                                   French West Ridge Direct expedition
+## 37                                                                      
+## 38                                   Bonington's 1975 Everest expedition
+## 39                                 British-Nepal Army Everest Expedition
+## 40                                                                      
+## 41                                            Chinese Iranian Expedition
+## 42                                                Yugoslavian Expedition
+## 43                                     Gerhard Schmatz German Expedition
+## 44                                     Gerhard Schmatz German Expedition
+## 45                        Japanese Alpine Club reconnaissance expedition
+## 46                        Japanese Alpine Club reconnaissance expedition
+## 47                        Japanese Alpine Club reconnaissance expedition
+## 48                                    Japanese Alpine Society Expedition
+## 49                                                    Italian Expedition
+## 50                                                    Italian Expedition
+## 51                                            Japanese Winter Expedition
+## 52                                         Whittaker American Expedition
+## 53                                      British Mount Everest Expedition
+## 54                                      British Mount Everest Expedition
+## 55                                        Bill March Canadian Expedition
+## 56                                        Bill March Canadian Expedition
+## 57                                        Bill March Canadian Expedition
+## 58                                        Bill March Canadian Expedition
+## 59                                                    Spanish Expedition
+## 60                                                    Spanish Expedition
+## 61                                                   Japanese Expedition
+## 62                                                   Japanese Expedition
+## 63                                                   Japanese Expedition
+## 64                                                   Japanese Expedition
+## 65                                                   Japanese Expedition
+## 66                                                     Indian Expedition
+## 67                            Micheal Lane British North Face Expedition
+## 68                                        Bulgarian West Face Expedition
+## 69                                     Australian New Zealand Expedition
+## 70                                     Australian New Zealand Expedition
+## 71                                     Australian New Zealand Expedition
+## 72                          Mission to recover body of Hannelore Schmatz
+## 73                          Mission to recover body of Hannelore Schmatz
+## 74                                                     Basque Expedition
+## 75                                                   Japanese Expedition
+## 76                                                     Indian Expedition
+## 77                                                     Indian Expedition
+## 78                                                     Indian Expedition
+## 79                                                     Indian Expedition
+## 80                                                     Indian Expedition
+## 81                                                                      
+## 82                                             Eiselin Sports Expedition
+## 83                                             Eiselin Sports Expedition
+## 84                                             Eiselin Sports Expedition
+## 85                                                                      
+## 86                                                                      
+## 87                                                   Japanese Expedition
+## 88                                                    British Expedition
+## 89  35th Anniversary climb with Chinese, Japanese and Nepalese nationals
+## 90                                                         International
+## 91                                                                      
+## 92                                                                      
+## 93                                                                      
+## 94                                           IAMES Bratislava Expedition
+## 95                                           IAMES Bratislava Expedition
+## 96                                           IAMES Bratislava Expedition
+## 97                                           IAMES Bratislava Expedition
+## 98                                                                      
+## 99                                                                      
+## 100                                                                     
+## 101           Polish-led expedition that included four U.S. mountaineers
+## 102           Polish-led expedition that included four U.S. mountaineers
+## 103           Polish-led expedition that included four U.S. mountaineers
+## 104           Polish-led expedition that included four U.S. mountaineers
+## 105           Polish-led expedition that included four U.S. mountaineers
+## 106                                              South Korean expedition
+## 107                                                                     
+## 108                                                                     
+## 109                                                                     
+## 110                                           Japanese Korean expedition
+## 111                                             Austrian solo expedition
+## 112                                             Japanese solo expedition
+## 113                                                    Indian expedition
+## 114                                                    Indian expedition
+## 115                                                                     
+## 116                                                    Indian Expedition
+## 117                                                  Japanese Expedition
+## 118                                                   Spanish Expedition
+## 119                                                  Nepalese Expedition
+## 120                                                  Nepalese Expedition
+## 121                           40th anniversary of Tenzing Norgay's climb
+## 122                                              South Korean expedition
+## 123                                              South Korean expedition
+## 124                                                  American expedition
+## 125                                                                     
+## 126                                                    German Expedition
+## 127                                                            Taiwanese
+## 128                                                   Italian Expedition
+## 129                                                Australian Expedition
+## 130                                                 Norwegian Expedition
+## 131                                                  American Expedition
+## 132                                              South Korean Expedition
+## 133                                              South Korean Expedition
+## 134                            &quot;Makalu&quot; Gau Ming-Ho Taiwanese expedition
+## 135                                                     Mountain Madness
+## 136                                                Adventure Consultants
+## 137                                                Adventure Consultants
+## 138                                                Adventure Consultants
+## 139                                           Indo-Tibetan Border Police
+## 140                                                Adventure Consultants
+## 141                                           Indo-Tibetan Border Police
+## 142                                           Indo-Tibetan Border Police
+## 143                                                             Austrian
+## 144                                                South African/British
+## 145                                                             American
+## 146                                                 French/Belgian/Swiss
+## 147                                                             Japanese
+## 148                                                          South Korea
+## 149                                                              British
+## 150                                                            Malaysian
+## 151                                                              Russian
+## 152                                                              Russian
+## 153                                                              Russian
+## 154                                                              Russian
+## 155                                                               Polish
+## 156                                                             American
+## 157                                                         South Korean
+## 158                                                       Russian/French
+## 159                                                       Russian/French
+## 160                                                              British
+## 161                                                          New Zealand
+## 162                                                            Ukrainian
+## 163                                                        International
+## 164                                                 Polish International
+## 165                                                Belgian International
+## 166                                                                     
+## 167                                                              Chinese
+## 168                                                             Nepalese
+## 169                                                             Austrian
+## 170                                                           Australian
+## 171                                                              Russian
+## 172                                                            Hungarian
+## 173                                                British International
+## 174                                                Russian International
+## 175                                                        International
+## 176                                                           Indo-Nepal
+## 177                                                          Independent
+## 178                                                               French
+## 179                                                        International
+## 180                                                         South Korean
+## 181                                                         South Korean
+## 182                                                         South Korean
+## 183                                                        International
+## 184                                                            Bulgarian
+## 185                                                             Japanese
+## 186                                                            Bulgarian
+## 187                                               Tim Redpath Expedition
+## 188                                             Charity run with brother
+## 189                                                                     
+## 190                                                                India
+## 191                                                               German
+## 192                                                                     
+## 193                                                             American
+## 194                                                             American
+## 195                                                             American
+## 196                                                             American
+## 197                                                             American
+## 198                                                               Indian
+## 199                                                       Asian Trekking
+## 200                                                        International
+## 201                                                        International
+## 202                                                        International
+## 203                                                        International
+## 204                                                             Japanese
+## 205                                                              Italian
+## 206                                                         South Korean
+## 207                                                         South Korean
+## 208                                             Sherpas documentary team
+## 209                                               Eco Everest Expedition
+## 210                                               Eco Everest Expedition
+## 211                                                                     
+## 212                                                                     
+## 213                                                                     
+## 214                                                                     
+## 215                                                        International
+## 216                                                        International
+## 217                                                                Nepal
+## 218                                                        International
+## 219                                                        International
+## 220                                                                     
+## 221                                                                Himex
+## 222                                                  Prestige Adventures
+## 223                                                            Pune team
+## 224                                                                     
+## 225                                                    Utmost Adventures
+## 226                                                       Asian Trekking
+## 227                                   Korean Everest &amp; Lhotse Expedition
+## 228                                                  Mountain Experience
+## 229                                                     Himalayan Guides
+## 230                                                            Monterosa
+## 231                                                        International
+## 232                                                 Destination Himalaya
+## 233                                        International Mountain Guides
+## 234                                    7 Summits Club Everest expedition
+## 235                                              Chinese expedition team
+## 236                                   Russian South-West Face expedition
+## 237                                                                     
+## 238                                              Zero to 8848 expedition
+## 239                                                                     
+## 240                                               Peak Freaks Expedition
+## 241                                               NBC Everest Expedition
+## 242                                          NBC Everest Expedition 2014
+## 243                                          AAI Everest Expedition 2014
+## 244                                          AAI Everest Expedition 2014
+## 245                                           AC Everest Expedition 2014
+## 246                                           AC Everest Expedition 2014
+## 247                                           AC Everest Expedition 2014
+## 248                                  Adventurist Everest Expedition 2014
+## 249                                  Adventurist Everest Expedition 2014
+## 250                                  Adventurist Everest Expedition 2014
+## 251                                 Jagged Globe Everest Expedition 2014
+## 252                             Himalayan Ecstasy Khotse Expedition 2014
+## 253                                          AAI Everest Expedition 2014
+## 254                                Everest Chinese Dream Expedition 2014
+## 255                                Everest Chinese Dream Expedition 2014
+## 256                                Everest Chinese Dream Expedition 2014
+##         Nationality
+## 1             India
+## 2             India
+## 3             India
+## 4             India
+## 5             India
+## 6             India
+## 7             India
+## 8             Nepal
+## 9             Nepal
+## 10   United Kingdom
+## 11   United Kingdom
+## 12   United Kingdom
+## 13            Nepal
+## 14            China
+## 15            China
+## 16            Nepal
+## 17    United States
+## 18            China
+## 19            Nepal
+## 20            Nepal
+## 21            Nepal
+## 22            Nepal
+## 23            Nepal
+## 24            Nepal
+## 25            Nepal
+## 26            Nepal
+## 27            Japan
+## 28          Denmark
+## 29        Australia
+## 30            Nepal
+## 31           France
+## 32            Nepal
+## 33            Nepal
+## 34            Nepal
+## 35            Nepal
+## 36            Nepal
+## 37            China
+## 38   United Kingdom
+## 39   United Kingdom
+## 40            Nepal
+## 41            China
+## 42            Nepal
+## 43    United States
+## 44          Germany
+## 45            China
+## 46            China
+## 47            China
+## 48            Japan
+## 49            Nepal
+## 50            Italy
+## 51            Japan
+## 52    United States
+## 53   United Kingdom
+## 54   United Kingdom
+## 55            Nepal
+## 56            Nepal
+## 57            Nepal
+## 58           Canada
+## 59            Nepal
+## 60            Nepal
+## 61            Japan
+## 62            Japan
+## 63            Japan
+## 64            Nepal
+## 65            Japan
+## 66            Nepal
+## 67   United Kingdom
+## 68         Bulgaria
+## 69        Australia
+## 70        Australia
+## 71   Czechoslovakia
+## 72            Nepal
+## 73            Nepal
+## 74            Spain
+## 75            Japan
+## 76            India
+## 77            India
+## 78            India
+## 79            India
+## 80            India
+## 81            Chile
+## 82      Switzerland
+## 83            Nepal
+## 84            Nepal
+## 85            Nepal
+## 86           Canada
+## 87            Japan
+## 88            Nepal
+## 89            Japan
+## 90           France
+## 91            Nepal
+## 92            Nepal
+## 93            Nepal
+## 94   Czechoslovakia
+## 95   Czechoslovakia
+## 96   Czechoslovakia
+## 97   Czechoslovakia
+## 98            Nepal
+## 99       Yugoslavia
+## 100           Nepal
+## 101          Poland
+## 102          Poland
+## 103          Poland
+## 104          Poland
+## 105          Poland
+## 106           Nepal
+## 107           Spain
+## 108           Nepal
+## 109           Nepal
+## 110     South Korea
+## 111         Germany
+## 112           Japan
+## 113           India
+## 114           India
+## 115           Nepal
+## 116           India
+## 117           Japan
+## 118           Nepal
+## 119           Nepal
+## 120           Nepal
+## 121           Nepal
+## 122     South Korea
+## 123     South Korea
+## 124   United States
+## 125           Spain
+## 126           Nepal
+## 127          Taiwan
+## 128           Italy
+## 129       Australia
+## 130           Nepal
+## 131           Nepal
+## 132           Nepal
+## 133           Nepal
+## 134          Taiwan
+## 135   United States
+## 136     New Zealand
+## 137   United States
+## 138     New Zealand
+## 139           India
+## 140           Japan
+## 141           India
+## 142           India
+## 143         Austria
+## 144  United Kingdom
+## 145           Nepal
+## 146          France
+## 147           Nepal
+## 148           Nepal
+## 149  United Kingdom
+## 150  United Kingdom
+## 151          Russia
+## 152          Russia
+## 153          Russia
+## 154           Nepal
+## 155         Germany
+## 156           Nepal
+## 157     South Korea
+## 158   United States
+## 159   United States
+## 160  United Kingdom
+## 161     New Zealand
+## 162         Ukraine
+## 163  United Kingdom
+## 164          Poland
+## 165         Belgium
+## 166         Denmark
+## 167           China
+## 168           Nepal
+## 169         Austria
+## 170       Australia
+## 171          Russia
+## 172         Hungary
+## 173  United Kingdom
+## 174      Yugoslavia
+## 175          France
+## 176           Nepal
+## 177          Poland
+## 178          France
+## 179           Nepal
+## 180     South Korea
+## 181     South Korea
+## 182     South Korea
+## 183   United States
+## 184        Bulgaria
+## 185           Japan
+## 186        Bulgaria
+## 187          Canada
+## 188   United States
+## 189        Slovenia
+## 190           India
+## 191         Germany
+## 192  United Kingdom
+## 193           Nepal
+## 194           Nepal
+## 195           Nepal
+## 196           Nepal
+## 197          France
+## 198           India
+## 199  United Kingdom
+## 200          Sweden
+## 201          Brazil
+## 202          Russia
+## 203         Germany
+## 204           Japan
+## 205           Italy
+## 206     South Korea
+## 207     South Korea
+## 208     Switzerland
+## 209           Nepal
+## 210  Czech Republic
+## 211           China
+## 212          Canada
+## 213         Hungary
+## 214         Denmark
+## 215  United Kingdom
+## 216   United States
+## 217           Nepal
+## 218           Japan
+## 219         Ireland
+## 220           Japan
+## 221           Nepal
+## 222           Nepal
+## 223           India
+## 224           Nepal
+## 225          Canada
+## 226         Germany
+## 227     South Korea
+## 228           China
+## 229           Spain
+## 230         Germany
+## 231        Cambodia
+## 232           Nepal
+## 233           Nepal
+## 234          Russia
+## 235           Nepal
+## 236          Russia
+## 237           Nepal
+## 238     South Korea
+## 239      Bangladesh
+## 240           Nepal
+## 241           Nepal
+## 242           Nepal
+## 243           Nepal
+## 244           Nepal
+## 245           Nepal
+## 246           Nepal
+## 247           Nepal
+## 248           Nepal
+## 249           Nepal
+## 250           Nepal
+## 251           Nepal
+## 252           Nepal
+## 253           Nepal
+## 254           Nepal
+## 255           Nepal
+## 256           Nepal
+##                                                                                                                               Cause of Death
+## 1                                                                                                                                  Avalanche
+## 2                                                                                                                                  Avalanche
+## 3                                                                                                                                  Avalanche
+## 4                                                                                                                                  Avalanche
+## 5                                                                                                                                  Avalanche
+## 6                                                                                                                                  Avalanche
+## 7                                                                                                                                  Avalanche
+## 8                                                                                                                                  Pneumonia
+## 9                                                                                                                           Brain hemorrhage
+## 10                                                                                     Disappeared; body never found; cause of death unknown
+## 11           Disappeared; body found in 1999; evidence suggests Mallory died from being accidentally struck by his ice axe following a fall.
+## 12                                                              Body found 1935; cause of death possibly exhaustion, exposure or starvation.
+## 13                                                                                                                               Falling ice
+## 14                                                                                                                         Mountain sickness
+## 15                                                                                                                                          
+## 16                                                                                                                                          
+## 17                                                                                                                       Crushed under serac
+## 18                                                                                                                                      Fall
+## 19                                                                                                                       Fall into a crevice
+## 20                                                                                                                                 Avalanche
+## 21                                                                                                                                 Avalanche
+## 22                                                                                                                                 Avalanche
+## 23                                                                                                                                 Avalanche
+## 24                                                                                                                                 Avalanche
+## 25                                                                                                                                 Avalanche
+## 26                                                                                                                                 Avalanche
+## 27                                                                                                                              Heart attack
+## 28                                                                                               Suspended above a crevice during a blizzard
+## 29                                                                                                                       Crushed under serac
+## 30                                                                                                                                 Avalanche
+## 31                                                                                                                                 Avalanche
+## 32                                                                                                                                 Avalanche
+## 33                                                                                                                                 Avalanche
+## 34                                                                                                                                 Avalanche
+## 35                                                                                                                                 Avalanche
+## 36                                                                                                                                 Avalanche
+## 37                                                                                                                          Exhaustion, fall
+## 38                                                                                                                               Disappeared
+## 39                                                                                                                      Fall into a crevasse
+## 40                                                                                                                      Fall into a crevasse
+## 41                                                                                                                      Fall into a crevasse
+## 42                                                                                                                                      Fall
+## 43                                                                                                                          Cold, exhaustion
+## 44                                                                                                                          Cold, exhaustion
+## 45                                                                                                                                 Avalanche
+## 46                                                                                                                                 Avalanche
+## 47                                                                                                                                 Avalanche
+## 48                                                                                                                                 Avalanche
+## 49                                                                                                                                      Fall
+## 50                                                                                                                       Crushed under serac
+## 51                                                                                                                                      Fall
+## 52                                                                                                                                      Fall
+## 53                                                                                                                                   Unknown
+## 54                                                                                                                               Disappeared
+## 55                                                                                                                                 Avalanche
+## 56                                                                                                                                 Avalanche
+## 57                                                                                                                                 Avalanche
+## 58                                                                                                                       Crushed under serac
+## 59                                                                                                                       Internal hemorrhage
+## 60                                                                                                                                      Fall
+## 61                                                                                                                               Disappeared
+## 62                                                                                                                               Disappeared
+## 63                                                                                                                                      Fall
+## 64                                                                                                                                      Fall
+## 65                                                                                                                                      Fall
+## 66                                                                                                                                 Avalanche
+## 67                                                                                                                                 Avalanche
+## 68                                                                                                                               Disappeared
+## 69                                                                                                                                      Fall
+## 70                                                                                                                                      Fall
+## 71                                                                                                                                      Fall
+## 72                                                                                                                                      Fall
+## 73                                                                                                                                      Fall
+## 74                                                                                                                                      Fall
+## 75                                                                                                                                 Avalanche
+## 76                                                                                                                                      Fall
+## 77                                                                                                                                  Exposure
+## 78                                                                                                                                  Exposure
+## 79                                                                                                                                  Exposure
+## 80                                                                                                                                  Exposure
+## 81                                                                                                                                 Avalanche
+## 82                                                                                                                                 Avalanche
+## 83                                                                                                                       Crushed under serac
+## 84                                                                                                                                 Avalanche
+## 85                                                                                                                                      Fall
+## 86                                                                                                                                          
+## 87                                                                                                                                   Drowned
+## 88                                                                                                                                 Avalanche
+## 89                                                                                                                              Heart attack
+## 90                                                                                                                                  Exposure
+## 91                                                                                                                                 Avalanche
+## 92                                                                                                                                      Fall
+## 93                                                                                                                                      Fall
+## 94                                                                                                                               Disappeared
+## 95                                                                                                                               Disappeared
+## 96                                                                                                                               Disappeared
+## 97                                                                                                                               Disappeared
+## 98                                                                                                                       Cerebral thrombosis
+## 99                                                                                                                                      Fall
+## 100                                                                                                                                     Fall
+## 101                                                                                                                                Avalanche
+## 102                                                                                                                                Avalanche
+## 103                                                                                                                                Avalanche
+## 104                                                                                                                                Avalanche
+## 105                                                                                                                       Avalanche injuries
+## 106                                                                                                                        Altitude sickness
+## 107                                                                                                                                Avalanche
+## 108                                                                                                                                Avalanche
+## 109                                                                                                                                Avalanche
+## 110                                                                                                                              Disappeared
+## 111                                                                                                                                 Exposure
+## 112                                                                                                                                     Fall
+## 113                                                                                                                                 Exposure
+## 114                                                                                                                                 Exposure
+## 115                                                                                                                             Heart attack
+## 116                                                                                                                                     Fall
+## 117                                                                                                                              Disappeared
+## 118                                                                                                                                     Fall
+## 119                                                                                                                              Disappeared
+## 120                                                                                                                              Disappeared
+## 121                                                                                                                                     Fall
+## 122                                                                                                                                     Fall
+## 123                                                                                                                                     Fall
+## 124                                                                                                                                     HAPE
+## 125                                                                                                                                     Fall
+## 126                                                                                                                          Cerebral oedema
+## 127                                                                                                              Exhaustion and/or Exposure.
+## 128                                                                                                                                     Fall
+## 129 500 ft fall. He showed signs of Exhaustion, Dehydration, Cerebral Oedema, Retinal Hemorrages and possible blood clots in his upper legs.
+## 130                                                                                                                                Avalanche
+## 131                                                                                                                                     Fall
+## 132                                                                                                                                         
+## 133                                                                                                                                     Fall
+## 134                                                                                                                     Injuries from a fall
+## 135                                                       Suspected HACE (High-altitude Cerebral Odema), exhaustion, frostbite and exposure.
+## 136                                                                                                                                 Exposure
+## 137                                                                                                                                 Exposure
+## 138                                                                                                                              Disappeared
+## 139                                                                                                                                 Exposure
+## 140                                                                                                                                 Exposure
+## 141                                                                                                                                 Exposure
+## 142                                                                                                                                 Exposure
+## 143                                                                                                                        Altitude sickness
+## 144                                                                                                                            Rope accident
+## 145                                                                                                Comatose on 23 Apr 1996, died in hospital
+## 146                                                                                                                                Avalanche
+## 147                                                                                                                                Avalanche
+## 148                                                                                                                                Avalanche
+## 149                                                                                                                             Heart attack
+## 150                                                                                                                                     Fall
+## 151                                                                                                                                     Fall
+## 152                                                                                                                              Disappeared
+## 153                                                                                                                              Disappeared
+## 154                                                                                                                                     Fall
+## 155                                                                                                                              Disappeared
+## 156                                                                                                                              Disappeared
+## 157                                                                                                                                Avalanche
+## 158                                                                                                                             320 ft Fall.
+## 159                                                                                                             Exposure or Cerebral Oedema.
+## 160                                                                                                                               Exhaustion
+## 161                                                                                                                               Exhaustion
+## 162                                                                                                                                         
+## 163                                                                                                                                         
+## 164                                                                                                                                     Fall
+## 165                                                                                                                                 Exposure
+## 166                                                                                                                                     Fall
+## 167                                                                                                                                     Fall
+## 168                                                                                                                                     Fall
+## 169                                                                                                                                     Fall
+## 170                                                                                                                          Cerebral oedema
+## 171                                                                                                                                  Illness
+## 172                                                                                                                                     Fall
+## 173                                                                                                                     Fall into a crevasse
+## 174                                                                                                             Exact cause and date unknown
+## 175                                                                                                                    Snowboarding Accident
+## 176                                                                                                                     Fall into a crevasse
+## 177                                                                                                                                     Fall
+## 178                                                                                                                         Sickness in tent
+## 179                                                                                                                        Altitude Sickness
+## 180                                                                                                                                 Exposure
+## 181                                                                                                                                 Exposure
+## 182                                                                                                                                 Exposure
+## 183                                                                                                                                 Exposure
+## 184                                                                                                                                 Exposure
+## 185                                                                                                                                 Exposure
+## 186                                                                                                                                 Exposure
+## 187                                                                                                                             Heart attack
+## 188                                                                                                                     Fall into a crevasse
+## 189                                                                                                                                         
+## 190                                                                                                                                 Exposure
+## 191                                                                                                                           Ridge Exposure
+## 192                                                                                                                             Organs Froze
+## 193                                                                                                                                 Altitude
+## 194                                                                                                                                Avalanche
+## 195                                                                                                                                Avalanche
+## 196                                                                                                                                Avalanche
+## 197                                                                                                                               Exhaustion
+## 198                                                                                                                                     Fall
+## 199                                                                                                              Exposure and/or Exhaustion.
+## 200                                                                                                                                     Fall
+## 201                                                                                                              Exposure and/or Exhaustion.
+## 202                                                                                                                        Altitude sickness
+## 203                                                                                                                        Altitude sickness
+## 204                                                                                                                                         
+## 205                                                                                                                                         
+## 206                                                                                                                                         
+## 207                                                                                                                                         
+## 208                                                                                                                               Exhaustion
+## 209                                                                                                                                Avalanche
+## 210                                                                                                                             Heart attack
+## 211                                                                                                                                         
+## 212                                                                                                                                         
+## 213                                                                                                                  Avalanche crevasse fall
+## 214                                                                                                                                     HACE
+## 215                                                                                                                               Exhaustion
+## 216                                                                                                                             Heart attack
+## 217                                                                                                                        Altitude sickness
+## 218                                                                                                                        Altitude sickness
+## 219                                                                                                                        Altitude sickness
+## 220                                                                                                                        cerebral apoplexy
+## 221                                                                                                                             Stroke (CVA)
+## 222                                                                                                                        altitude sickness
+## 223                                                                                                                                   Stroke
+## 224                                                                                                                     Fall into a crevasse
+## 225                                                                                                                               Exhaustion
+## 226                                                                                                                          Cerebral oedema
+## 227                                                                                                                                     Fall
+## 228                                                                                                              Suspected altitude sickness
+## 229                                                                                                                               Exhaustion
+## 230                                                                                             Exhaustion after breaking leg at Second Step
+## 231                                                                                                            Encountered inclement weather
+## 232                                                                                                                  Falling into a crevasse
+## 233                                                                                                                 Suspected cardiac arrest
+## 234                                                                                                                 Suspected cardiac arrest
+## 235                                                                                                                                     Fall
+## 236                                                                                                                                     Fall
+## 237                                                                                                                                         
+## 238                                                                                                              Suspected Altitude Sickness
+## 239                                                                                                              Suspected Altitude Sickness
+## 240                                                                                                                                     HAPE
+## 241                                                                                                                                Avalanche
+## 242                                                                                                                                Avalanche
+## 243                                                                                                                                Avalanche
+## 244                                                                                                                                Avalanche
+## 245                                                                                                                                Avalanche
+## 246                                                                                                                                Avalanche
+## 247                                                                                                                                Avalanche
+## 248                                                                                                                                Avalanche
+## 249                                                                                                                                Avalanche
+## 250                                                                                                                                Avalanche
+## 251                                                                                                                                Avalanche
+## 252                                                                                                                                Avalanche
+## 253                                                                                                                      Avalanche (missing)
+## 254                                                                                                                                Avalanche
+## 255                                                                                                                      Avalanche (missing)
+## 256                                                                                                                      Avalanche (missing)
+##                                                             Location
+## 1                                         North Col !Below North Col
+## 2                                         North Col !Below North Col
+## 3                                         North Col !Below North Col
+## 4                                         North Col !Below North Col
+## 5                                         North Col !Below North Col
+## 6                                         North Col !Below North Col
+## 7                                         North Col !Below North Col
+## 8                                   Rongbuk B.C. !Above Rongbuk B.C.
+## 9                                   Rongbuk B.C. !Above Rongbuk B.C.
+## 10                                                        N.E. Ridge
+## 11                                                        N.E. Ridge
+## 12                                              East Rongbuk glacier
+## 13                                                       Lhotse Face
+## 14                                                                  
+## 15                                                        N.E. Ridge
+## 16                                                       Lhotse face
+## 17                                                           Icefall
+## 18                                                           Icefall
+## 19                                                           Icefall
+## 20                                                           Icefall
+## 21                                                                  
+## 22                                                           Icefall
+## 23                                                           Icefall
+## 24                                                           Icefall
+## 25                                                           Icefall
+## 26                                                            5525 m
+## 27                                                             6150m
+## 28                                                             6900m
+## 29                                                           Icefall
+## 30                                                         S.W. Face
+## 31                                                             6400m
+## 32                                                             6400m
+## 33                                                             6400m
+## 34                                                             6400m
+## 35                                                             6400m
+## 36                                                             6400m
+## 37                                                             8500m
+## 38                                                       Near Summit
+## 39                                                           Camp II
+## 40                                                           Icefall
+## 41                                                           Icefall
+## 42                                                           Icefall
+## 43                                                  8400m S.E. Ridge
+## 44                                                  8400m S.E. Ridge
+## 45                                        North Col !Below North Col
+## 46                                        North Col !Below North Col
+## 47                                        North Col !Below North Col
+## 48                               7900m North Face (Hornbein Couloir)
+## 49                                                           Icefall
+## 50                                                       Lhotse Face
+## 51                                                      6900m W. Cwm
+## 52                                                             8000m
+## 53                                  North-East Ridge (approx. 8200m)
+## 54                                  North-East Ridge (approx. 8200m)
+## 55                                                           Icefall
+## 56                                                           Icefall
+## 57                                                           Icefall
+## 58                                                           Icefall
+## 59                                                             6770m
+## 60                                                     8300m W ridge
+## 61                                                       Near Summit
+## 62                                                       Near Summit
+## 63                                                       Near Summit
+## 64                                                    8600m SE Ridge
+## 65                                                       Near Summit
+## 66                                                           Icefall
+## 67                                                             6238m
+## 68                                                  8500m West Ridge
+## 69                                                             8000m
+## 70                                                             8000m
+## 71                                                       Near Summit
+## 72                                                  8400m S.E. Ridge
+## 73                                                  8400m S.E. Ridge
+## 74                                                             7300m
+## 75                                                                  
+## 76                                                             7986m
+## 77                                                         South Col
+## 78                                                         South Col
+## 79                                                         South Col
+## 80                                                         South Col
+## 81                                        North Col !Below North Col
+## 82                                                             7315m
+## 83                                                           Icefall
+## 84                                        North Col !Below North Col
+## 85                                                             7700m
+## 86                                     Hornbein Couloir, Near Summit
+## 87                                                 E Rongbuk Glacier
+## 88                                                         Base camp
+## 89                                                         Base camp
+## 90                                                             7700m
+## 91                                                             7200m
+## 92                                                             8200m
+## 93                                                             8200m
+## 94                                                  8000m S.E. Ridge
+## 95                                                  8000m S.E. Ridge
+## 96                                                  8000m S.E. Ridge
+## 97                                                  8000m S.E. Ridge
+## 98                                                         South Col
+## 99                                        Descending South Col Route
+## 100                                       Descending South Col Route
+## 101                                                    7200m W ridge
+## 102                                                    7200m W ridge
+## 103                                                    7200m W ridge
+## 104                                                    7200m W ridge
+## 105                                                       Lhola camp
+## 106                                                                 
+## 107                                                                 
+## 108                                                                 
+## 109                                                                 
+## 110                                                                 
+## 111                                                 7850m N.E. Ridge
+## 112                                                         8700m NE
+## 113                                                                 
+## 114                                                                 
+## 115                                                                 
+## 116                                                          Icefall
+## 117                                                         8350m NE
+## 118                                                                 
+## 119                                                 8750m S.E. Ridge
+## 120                                                 8750m S.E. Ridge
+## 121                                                 8750m S.E. Ridge
+## 122                                                 8450m S.E. Ridge
+## 123                                                 8450m S.E. Ridge
+## 124                                                            6400m
+## 125                                                                 
+## 126                                                                 
+## 127                                                                 
+## 128                                                                 
+## 129                                                         8500m NE
+## 130                                                                 
+## 131                                                                 
+## 132                                                            6900m
+## 133                                                      Near Summit
+## 134                                                                 
+## 135                                                 8300m S.E. Ridge
+## 136                                                     South Summit
+## 137                                                     South Summit
+## 138                                                 8700m S.E. Ridge
+## 139                                                 8600m N.E. Ridge
+## 140                                                        South Col
+## 141                                                 8600m N.E. Ridge
+## 142                                                 8600m N.E. Ridge
+## 143                                  8300m North Face, Great Couloir
+## 144                                         S.E. Ridge, Hillary Step
+## 145                                                          Camp II
+## 146                                                7400m Lhotse Face
+## 147                                                7400m Lhotse Face
+## 148                                                7400m Lhotse Face
+## 149                                                        Base Camp
+## 150                                                      Lhotse Face
+## 151                                                       N.E. Ridge
+## 152                                                       N.E. Ridge
+## 153                                                       N.E. Ridge
+## 154                                                       N.E. Ridge
+## 155                                                       N.E. Ridge
+## 156                                                       S.E. Ridge
+## 157                                                  North Col Flank
+## 158                                                       N.E. Ridge
+## 159                                                       N.E. Ridge
+## 160                                                       N.E. Ridge
+## 161                                                       N.E. Ridge
+## 162                                                       N.E. Ridge
+## 163                                                       S.E. Ridge
+## 164                                                       N.E. Ridge
+## 165                                                       N.E. Ridge
+## 166                                                       N.E. Ridge
+## 167                                                       N.E. Ridge
+## 168                                                       N.E. Ridge
+## 169                                                 8500m S.E. Ridge
+## 170                                                       N.E. Ridge
+## 171                                                       N.E. Ridge
+## 172                                                 7800m N.E. Ridge
+## 173                                                   Below Camp III
+## 174                                                 7800m N.E. Ridge
+## 175                                                 Hornbein Couloir
+## 176                                                    5900m Icefall
+## 177                                                 7900m N.E. Ridge
+## 178                                                 5500m S.E. Ridge
+## 179                                                 6000m S.E. Ridge
+## 180                                                 8500m N.E. Ridge
+## 181                                                 8500m N.E. Ridge
+## 182                                                 8500m N.E. Ridge
+## 183                                                 8600m S.E. Ridge
+## 184                                                 8600m N.E. Ridge
+## 185                                                 8600m N.E. Ridge
+## 186                                                 8700m N.E. Ridge
+## 187                                                 4600m S.E. Ridge
+## 188                                              5800m Icefall South
+## 189                                                 8600m N.E. Ridge
+## 190                                                 8700m N.E. Ridge
+## 191                                                       8000m N.E.
+## 192                                                 8200m S.E. Ridge
+## 193                                                 5500m N.E. Ridge
+## 194                                                    5900m Icefall
+## 195                                                    5900m Icefall
+## 196                                                    5900m Icefall
+## 197                                                       N.E. Ridge
+## 198                                                 8600m N.E. Ridge
+## 199                                                 8600m N.E. Ridge
+## 200                                             8700m Norton Couloir
+## 201                                       Camp III, 8200m N.E. Ridge
+## 202                                                 7800m N.E. Ridge
+## 203                                                 8700m N.E. Ridge
+## 204                                                       N.E. Ridge
+## 205                                                       N.E. Ridge
+## 206                                                        S.W. Face
+## 207                                                        S.W. Face
+## 208                                                  8000m South Col
+## 209                                                          Icefall
+## 210                                                                 
+## 211                                                                 
+## 212                                               8700m North Summit
+## 213                                                        North Col
+## 214                                                                 
+## 215                                                            8600m
+## 216                                                            7010m
+## 217                                                        Base Camp
+## 218                                                8400m The Balcony
+## 219                                                8400m The Balcony
+## 220                                                    Lower Icefall
+## 221                                                          Icefall
+## 222                                                        Base Camp
+## 223                                                        Base Camp
+## 224                                                           Camp 1
+## 225                                              Below Balcony 8300m
+## 226                                                     Hillary Step
+## 227                                                          Balcony
+## 228                                                          Balcony
+## 229                                                 8300m N.E. Ridge
+## 230                                                 8300m N.E. Ridge
+## 231                                    Around 4,000 meter high point
+## 232                         Between Camps 1 and 2 in the Western Cwm
+## 233                                             Camp 3 on south side
+## 234                 At 100m above ABC on north side (at about 6500m)
+## 235 Between Camp 2 and Camp 3 on descent from Camp 4 (on south side)
+## 236                                                    5600m Icefall
+## 237                                                 8300m N.E. Ridge
+## 238                                          On descent (south side)
+## 239                                                   South Col Camp
+## 240                                                Everest Base Camp
+## 241                                                          Icefall
+## 242                                                          Icefall
+## 243                                                          Icefall
+## 244                                                          Icefall
+## 245                                                          Icefall
+## 246                                                          Icefall
+## 247                                                          Icefall
+## 248                                                          Icefall
+## 249                                                          Icefall
+## 250                                                          Icefall
+## 251                                                          Icefall
+## 252                                                          Icefall
+## 253                                                          Icefall
+## 254                                                          Icefall
+## 255                                                          Icefall
+## 256                                                          Icefall
+##                Refs
+## 1               [6]
+## 2               [6]
+## 3               [6]
+## 4               [6]
+## 5               [6]
+## 6               [6]
+## 7               [6]
+## 8           [6][18]
+## 9           [6][18]
+## 10              [6]
+## 11              [6]
+## 12             [19]
+## 13             [20]
+## 14         [21][22]
+## 15         [21][22]
+## 16             [23]
+## 17     [24][25][26]
+## 18          [1][22]
+## 19             [27]
+## 20             [28]
+## 21             [28]
+## 22             [28]
+## 23             [28]
+## 24             [28]
+## 25             [28]
+## 26             [29]
+## 27             [30]
+## 28             [31]
+## 29         [32][33]
+## 30             [34]
+## 31             [35]
+## 32             [35]
+## 33             [35]
+## 34             [35]
+## 35             [35]
+## 36             [35]
+## 37             [36]
+## 38         [37][38]
+## 39             [31]
+## 40             [31]
+## 41              [1]
+## 42             [31]
+## 43             [39]
+## 44             [39]
+## 45             [40]
+## 46             [40]
+## 47             [40]
+## 48             [41]
+## 49             [42]
+## 50             [43]
+## 51             [44]
+## 52             [45]
+## 53         [27][46]
+## 54         [46][47]
+## 55             [48]
+## 56             [48]
+## 57             [48]
+## 58             [49]
+## 59             [36]
+## 60             [50]
+## 61         [27][47]
+## 62             [47]
+## 63             [27]
+## 64         [27][36]
+## 65             [27]
+## 66             [36]
+## 67             [51]
+## 68             [27]
+## 69             [52]
+## 70             [52]
+## 71             [27]
+## 72             [13]
+## 73             [13]
+## 74             [53]
+## 75             [53]
+## 76             [54]
+## 77             [55]
+## 78             [55]
+## 79         [54][55]
+## 80             [55]
+## 81             [56]
+## 82             [57]
+## 83             [57]
+## 84             [27]
+## 85             [58]
+## 86             [59]
+## 87     [60][61][62]
+## 88             [36]
+## 89             [63]
+## 90             [53]
+## 91             [64]
+## 92             [27]
+## 93             [27]
+## 94             [65]
+## 95             [65]
+## 96             [65]
+## 97             [27]
+## 98             [27]
+## 99             [27]
+## 100            [27]
+## 101            [66]
+## 102            [66]
+## 103            [66]
+## 104            [66]
+## 105        [27][66]
+## 106             [1]
+## 107            [67]
+## 108            [67]
+## 109            [67]
+## 110            [68]
+## 111        [36][69]
+## 112             [1]
+## 113             [1]
+## 114             [1]
+## 115            [70]
+## 116             [1]
+## 117            [71]
+## 118             [1]
+## 119            [72]
+## 120            [72]
+## 121            [73]
+## 122         [1][74]
+## 123         [1][74]
+## 124            [75]
+## 125            [76]
+## 126             [1]
+## 127             [1]
+## 128             [1]
+## 129             [1]
+## 130             [1]
+## 131             [1]
+## 132             [1]
+## 133             [1]
+## 134            [77]
+## 135        [53][78]
+## 136        [53][78]
+## 137        [53][78]
+## 138        [53][78]
+## 139        [53][78]
+## 140        [53][78]
+## 141        [53][78]
+## 142        [53][78]
+## 143            [79]
+## 144            [80]
+## 145            [81]
+## 146        [53][82]
+## 147        [53][82]
+## 148        [53][82]
+## 149             [1]
+## 150             [1]
+## 151 [1][83][84][85]
+## 152 [1][83][84][85]
+## 153 [1][83][84][85]
+## 154            [83]
+## 155            [86]
+## 156            [87]
+## 157             [1]
+## 158        [10][84]
+## 159    [10][11][84]
+## 160             [1]
+## 161             [1]
+## 162         [1][88]
+## 163            [89]
+## 164            [90]
+## 165            [90]
+## 166             [1]
+## 167             [1]
+## 168             [8]
+## 169            [91]
+## 170            [92]
+## 171            [93]
+## 172             [1]
+## 173            [94]
+## 174             [1]
+## 175            [95]
+## 176             [1]
+## 177             [1]
+## 178             [1]
+## 179             [1]
+## 180         [1][96]
+## 181         [1][96]
+## 182         [1][96]
+## 183            [97]
+## 184             [1]
+## 185            [98]
+## 186             [1]
+## 187            [99]
+## 188           [100]
+## 189             [1]
+## 190             [1]
+## 191             [1]
+## 192           [101]
+## 193             [1]
+## 194           [102]
+## 195           [102]
+## 196           [102]
+## 197             [1]
+## 198             [1]
+## 199           [103]
+## 200             [1]
+## 201           [104]
+## 202             [1]
+## 203           [105]
+## 204           [106]
+## 205             [1]
+## 206           [106]
+## 207           [106]
+## 208           [107]
+## 209           [108]
+## 210           [109]
+## 211           [109]
+## 212      [109][110]
+## 213           [111]
+## 214           [109]
+## 215           [112]
+## 216           [113]
+## 217           [114]
+## 218           [115]
+## 219           [116]
+## 220      [117][118]
+## 221      [119][120]
+## 222      [120][121]
+## 223      [120][122]
+## 224      [120][123]
+## 225      [120][124]
+## 226      [120][124]
+## 227      [120][124]
+## 228      [120][125]
+## 229      [120][126]
+## 230      [120][126]
+## 231            &lt;NA&gt;
+## 232           [127]
+## 233           [128]
+## 234           [129]
+## 235           [130]
+## 236      [131][132]
+## 237           [133]
+## 238           [134]
+## 239           [134]
+## 240           [135]
+## 241      [136][137]
+## 242      [136][137]
+## 243      [136][137]
+## 244      [136][137]
+## 245      [136][137]
+## 246      [136][137]
+## 247      [136][137]
+## 248      [136][137]
+## 249      [136][137]
+## 250      [136][137]
+## 251      [136][137]
+## 252      [136][137]
+## 253      [136][137]
+## 254      [136][137]
+## 255      [136][137]
+## 256      [136][137]
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">mon</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">months</span><span class="hl std">(</span><span class="hl kwd">as.Date</span><span class="hl std">(dataFrame[,</span><span class="hl num">2</span><span class="hl std">]))</span> <span class="hl com">#taking out the month from the date.</span>
+
+<span class="hl std">counts</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">table</span><span class="hl std">(mon)</span><span class="hl com"># using table() function to count the frequency of each month</span>
+
+<span class="hl kwd">barplot</span><span class="hl std">(counts,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Death By Months&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Month&quot;</span><span class="hl std">)</span> <span class="hl com"># plotting bar chart with number of deaths on y-axis and month on x-axis.</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div></div>
+
+<p>The above plot shows the number of deaths in a particular month:</p>
+
+
+
+</body>
+</html>
+
